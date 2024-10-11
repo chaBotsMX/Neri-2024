@@ -2,7 +2,7 @@
 PID line follower.py
 Made with Pybricks, for WRO Junior 2024
 
-chaBots Neri 🇲🇽
+chaBots Neri 🇲🇽    https://chabots.com.mx/    https://www.dojorobot.com/
 -Alfonso De Anda
 ---------------------------------------------------'''
 
