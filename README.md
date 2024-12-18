@@ -58,4 +58,3 @@ Hope this repository helps people!, if you have any issues, please contact me
 
 # Contact
 Discord - @alfonso.dn
-Twitter - 
