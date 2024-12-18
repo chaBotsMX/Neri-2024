@@ -1,5 +1,47 @@
-<h3 align="center">chaBots Neri</h3>
-<h1 align="center">WRO JUNIOR 2024</h1>
+# WRO Junior 2024 - ChaBots Neri
 
-![App Platorm](https://wrovenezuela.org/wp-content/uploads/2024/01/Image20240116202617.png)
-![App Platorm](https://pybricks.com/misc/images/home-blocks.svg)
+----
+
+## About
+<img src="img/Pybricks.jpg" alt="Screenshot" width="800">
+
+This repository contains Python programs made with Pybricks, to make precise spceific functions for LEGO Education's Kit SPIKE Prime. These functions were made for a bigger program to solve the challenge for the 2024 Junior category in the World Robot Olympiad.
+
+The objective of this repo, is to make easier for other teams in the WRO and students using the same tecnology as us for making this kind of precise functions, such as Line Following, or making a precise 90 degree turn using the built-in gyroscope.
+
+----
+
+## Content
+
+## Gyroscope
+
+### ・One wheel gyro turning
+  
+  Function to make a precise turn to any direction (0 - 360°) only moving one wheel
+
+### Own axis gyro turning
+  
+  Function to make a precise turn to any direction (0 - 360°) moving both wheels at same time in diffferent directions
+
+## Line Follower
+
+### ・Line following by rotations
+  Function to execute a PID Line Follower during certain number of rotations, determined by motor encoders
+
+### ・PID Line Follower
+  Function to execute a PID Line Follower forever
+
+## Park element detection
+
+### ・Element detection
+  Algorithm that determines the type of elements (tree or duck) are in the right of the robot, using a color sensor.
+
+----
+
+## Getting Started
+
+- First, you should install the Pybricks App [here](https://code.pybricks.com/), or just initialize the online compiler.
+
+- Then, click "Install Pybricks Firmware" in the settings section, and follow the instructions. This will reset the firmware of your SPIKE Hub, so you can upload Pybricks code to it.
+
+- Now, to use any of my programs in your hub, you have to search the program you would like to use in the repo. Then, click the download raw file button.
