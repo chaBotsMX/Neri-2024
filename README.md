@@ -3,7 +3,7 @@
 ----
 
 ## About
-<img src="img/Pybricks.jpg" alt="Screenshot" width="800">
+<img src="img/Pybricks.jpg" alt="Screenshot" width="650">
 
 This repository contains Python programs made with Pybricks, to make precise spceific functions for LEGO Education's Kit SPIKE Prime. These functions were made for a bigger program to solve the challenge for the 2024 Junior category in the World Robot Olympiad.
 
@@ -45,3 +45,17 @@ The objective of this repo, is to make easier for other teams in the WRO and stu
 - Then, click "Install Pybricks Firmware" in the settings section, and follow the instructions. This will reset the firmware of your SPIKE Hub, so you can upload Pybricks code to it.
 
 - Now, to use any of my programs in your hub, you have to search the program you would like to use in the repo. Then, click the download raw file button.
+
+  <img src="img/downloadgithub.jpg" alt="Screenshot" width="650">
+
+- Go back to the Pybricks compiler. Now click on import a file, and select the file you just downloaded from Github
+
+- You are good to go!, you now have my program in your computer, ready to execute. Connect to you SPIKE Prime Hub, and run the program. Though you may need to adjust the setup values
+
+----
+
+Hope this repository helps people!, if you have any issues, please contact me
+
+# Contact
+Discord - @alfonso.dn
+Twitter - 
