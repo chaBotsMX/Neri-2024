@@ -13,6 +13,7 @@ from pybricks.tools import StopWatch, multitask, run_task, wait
 
 hub = PrimeHub()
 
+#Setup sensors and motors. You may have to adjust this
 lineSensor = ColorSensor(Port.A)
 rightMotor = Motor(Port.B, Direction.CLOCKWISE)
 leftMotor = Motor(Port.C, Direction.COUNTERCLOCKWISE)
@@ -56,7 +57,7 @@ async def lineFollow(kP, kI, kD, speed, leftRight):
     await wait(1)
     while True:
         await wait(1)
-        error = await lineSensor.reflection() - threshold
+        error = lineSensor.reflection() - threshold
         pFix = error * kP
         integral = integral + error
         iFix = integral * kI
@@ -75,3 +76,5 @@ async def lineFollow(kP, kI, kD, speed, leftRight):
 async def main():
     await setup()
     await lineFollow(0.3, 0, 0.1, 50, 0)
+
+run_task(main())

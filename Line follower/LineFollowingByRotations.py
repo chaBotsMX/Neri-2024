@@ -11,11 +11,12 @@ from pybricks.parameters import Button, Direction, Port, Stop
 from pybricks.pupdevices import ColorSensor, Motor
 from pybricks.tools import StopWatch, multitask, run_task, wait
 
-hub = PrimeHub()
+prime_hub = PrimeHub()
 
-lineSensor = ColorSensor(Port.A)
-rightMotor = Motor(Port.B, Direction.CLOCKWISE)
-leftMotor = Motor(Port.C, Direction.COUNTERCLOCKWISE)
+#Setup sensors and motors. You may have to adjust these values
+lineSensor = ColorSensor(Port.F)
+rightMotor = Motor(Port.E, Direction.CLOCKWISE)
+leftMotor = Motor(Port.D, Direction.COUNTERCLOCKWISE)
 
 #Initialize variables
 sensorBlack = 19 #Value of the sensor reflection at the black line.
@@ -51,40 +52,38 @@ async def setup():
     kD: Constant multiplier for derivative value
     speed: declares power percentage of the motors (0-100)
     leftRight: defines if the line will be followed from the left or the right. (0=Left, 1=Right) '''
-async def lineFollow(kP, kI, kD, speed, leftRight):
-    global error, pFix, integral, iFix, derivative, lastError, dFix, correction
-    await wait(1)
-    while True:
-        await wait(1)
-        error = await lineSensor.reflection() - threshold
-        pFix = error * kP
-        integral = integral + error
-        iFix = integral * kI
-        derivative = error - lastError
-        lastError = error
-        dFix = derivative * kD
-        correction = (pFix + iFix) + dFix
-        if leftRight == 1:
-            leftMotor.dc(speed + correction)
-            rightMotor.dc(speed - correction)
-        elif leftRight == 0:
-            leftMotor.dc(speed - correction)
-            rightMotor.dc(speed + correction)
-
 async def followLineUntil(rotations, kP, kI, kD, speed, leftRight):
-    global rotations
+    global error, pFix, integral, iFix, derivative, lastError, dFix, correction
     await wait(1)
     leftMotor.reset_angle(0)
     rightMotor.reset_angle(0)
     rotations = 0
-    while not rotations >= rotation:
+    while not rotations >= rotations:
         await wait(1)
         rotations = (leftMotor.angle() + rightMotor.angle()) / 2
-        await lineFollow(kP, kI, kD, speed, leftRight)
+        while True:
+            await wait(1)
+            error = await lineSensor.reflection() - threshold
+            pFix = error * kP
+            integral = integral + error
+            iFix = integral * kI
+            derivative = error - lastError
+            lastError = error
+            dFix = derivative * kD
+            correction = (pFix + iFix) + dFix
+            if leftRight == 1:
+                leftMotor.dc(speed + correction)
+                rightMotor.dc(speed - correction)
+            elif leftRight == 0:
+                leftMotor.dc(speed - correction)
+                rightMotor.dc(speed + correction)
+
     rightMotor.brake()
     leftMotor.brake()
 
 #Example code for using the PID function
 async def main():
     await setup()
-    await followLineUntil(500, 0.3, 0, 0.1, 50, 0)
+    await followLineUntil(500, 0.01, 0, 0, 50, 0)
+
+run_task(main())
