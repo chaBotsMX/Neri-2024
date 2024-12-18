@@ -14,6 +14,7 @@ from pybricks.tools import StopWatch, multitask, run_task, wait
 
 hub = PrimeHub()
 
+#Setup sensors and motors. You may have to adjust these values
 rightMotor = Motor(Port.B, Direction.CLOCKWISE)
 leftMotor = Motor(Port.C, Direction.COUNTERCLOCKWISE)
 elementSensor = ColorSensor(Port.D)
@@ -40,9 +41,9 @@ async def checkElements():
     while True:
         await wait(1)
         if await elementSensor.reflection() > 3:
-            await driveBase.straight(10, Stop.NONE)
-            await isFlowerOrDuck()
-            await driveBase.straight(10, Stop.NONE)
+            driveBase.straight(10, Stop.NONE)
+            await isTreeOrDuck(3, 11, 12, 30) #Set the calibrated sensor readings for each color
+            driveBase.straight(10, Stop.NONE)
             if elementX == 6:
                 print('COMBINATION DETECTED')
                 break
@@ -59,8 +60,8 @@ async def checkElements():
     leftMotor.hold()
 
 #defines the type of park element (tree or duck)
-#should calibrate reflected light from the sensor to elements
-async def isFlowerOrDuck(minTreeValue, maxTreeValue, minDuckValue, maxDuckValue):
+#you should calibrate reflected light from the sensor to elements and adjust the values
+async def isTreeOrDuck(minTreeValue, maxTreeValue, minDuckValue, maxDuckValue):
     global elementX
     await wait(1)
     if await elementSensor.reflection() > minTreeValue and await elementSensor.reflection() <= maxTreeValue:
@@ -75,8 +76,10 @@ async def isFlowerOrDuck(minTreeValue, maxTreeValue, minDuckValue, maxDuckValue)
         pass
 
 
-#Example code for using the
+#Example code
 async def main():
     await setup()
-    await checkElements(3, 11, 12, 30)
+    await checkElements()
+
+run_task(main())
     
