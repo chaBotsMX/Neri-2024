@@ -8,14 +8,16 @@ chaBots Neri 🇲🇽 chabots.com.mx dojorobot.com
 
 from pybricks.hubs import PrimeHub
 from pybricks.parameters import Button, Direction, Port, Stop
-from pybricks.pupdevices import Motor
+from pybricks.pupdevices import ColorSensor, Motor
+from pybricks.robotics import DriveBase
 from pybricks.tools import StopWatch, multitask, run_task, wait
 
-hub = PrimeHub()
+prime_hub = PrimeHub()
 
-#lineSensor = ColorSensor(Port.A)
-rightMotor = Motor(Port.B, Direction.CLOCKWISE)
-leftMotor = Motor(Port.C, Direction.COUNTERCLOCKWISE)
+#Setup sensors and motors. You may have to adjust this
+watch = StopWatch()
+rightMotor = Motor(Port.E, Direction.CLOCKWISE)
+leftMotor = Motor(Port.D, Direction.COUNTERCLOCKWISE)
 
 #Set up code
 async def setup():
@@ -47,4 +49,7 @@ async def turningByHisOwnAxis(angle):
 #Example code for using the turning function
 async def main():
     await setup()
-    turningByHisOwnAxis(90)
+    while True:
+        await turningByHisOwnAxis(0)
+
+run_task(main())

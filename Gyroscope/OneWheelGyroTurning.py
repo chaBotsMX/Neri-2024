@@ -13,7 +13,7 @@ from pybricks.tools import StopWatch, multitask, run_task, wait
 
 hub = PrimeHub()
 
-#lineSensor = ColorSensor(Port.A)
+#Setup sensors and motors. You may have to adjust this
 rightMotor = Motor(Port.B, Direction.CLOCKWISE)
 leftMotor = Motor(Port.C, Direction.COUNTERCLOCKWISE)
 
@@ -48,4 +48,7 @@ async def oneWheelTurning(angle):
 #Example code for using the turning function
 async def main():
     await setup()
-    oneWheelTurning(90)
+    while True:
+        await oneWheelTurning(0)
+
+run_task(main())
